@@ -55,7 +55,10 @@ function App() {
   const updateItemQuantity = (id, quantity) => {
     const updatedCartItems = cartItems.map((item) => {
       if (item.id === id) {
-        return { ...item, quantity: parseInt(quantity) };
+        if (quantity < 1) {
+          quantity = 1; // set minimum quantity to 1
+        }
+        return { ...item, quantity: quantity };
       }
       return item;
     });
